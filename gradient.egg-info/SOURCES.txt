@@ -1,0 +1,7 @@
+setup.cfg
+setup.py
+gradient.egg-info/PKG-INFO
+gradient.egg-info/SOURCES.txt
+gradient.egg-info/dependency_links.txt
+gradient.egg-info/requires.txt
+gradient.egg-info/top_level.txt

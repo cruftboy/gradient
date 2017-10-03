@@ -11,22 +11,35 @@ def gen(color_a, color_b, steps,hight):
 	t.pensize(100/steps)
 	Diff = []
 	Color = []
+	RGB = []
 
-	#Checks and changes colortypes to rgb 255
 	def check(TransIn):
 
 		if type(TransIn) == list:
+			if type(TransIn[0]) == int:
+				if TransIn > [1,1,1]:
+					return([round(x) for x in TransIn])
 
-			if TransIn > [1,1,1]:
-				return([round(x) for x in TransIn])
+				elif TransIn <= [1,1,1]:
 
-			elif TransIn <= [1,1,1]:
+					for x in range(3):
+						TransIn[x] *= 255
 
+					return([round(x) for x in TransIn])
+			elif type(TransIn[0]) == str:
+				for x in range(len(TransIn)):
+					RGB.extend(list(webcolors.name_to_rgb(TransIn[x])))
+				TransIn = [0,0,0]
+
+				for x in range(0,len(RGB),3):
+					TransIn[0] += RGB[x]
+				for x in range(1,len(RGB),3):
+					TransIn[1] += RGB[x]
+				for x in range(2,len(RGB),3):
+					TransIn[2] += RGB[x]
 				for x in range(3):
-					TransIn[x] *= 255
-
-				return([round(x) for x in TransIn])
-
+					TransIn[x] /= (len(RGB)/2)
+				return(TransIn)
 		elif type(TransIn) == str:
 
 			if "#" in TransIn:
